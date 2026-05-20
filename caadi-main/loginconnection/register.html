@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Registro de Usuario</title>
+  <script>
+    function validarFormulario() {
+      const username = document.forms["registro"]["username"].value.trim();
+      const nombre = document.forms["registro"]["nombre"].value.trim();
+      const apellidos = document.forms["registro"]["apellidos"].value.trim();
+      const correo = document.forms["registro"]["correo"].value.trim();
+      const password = document.forms["registro"]["password"].value;
+      const confirmPassword = document.forms["registro"]["confirm_password"].value;
+
+      if (!username || !nombre || !apellidos || !correo || !password || !confirmPassword) {
+        alert("Todos los campos son obligatorios.");
+        return false;
+      }
+
+      // Validar correo simple
+      const correoRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!correoRegex.test(correo)) {
+        alert("Por favor, ingresa un correo válido.");
+        return false;
+      }
+
+      // Validar longitud mínima de contraseña
+      if (password.length < 6) {
+        alert("La contraseña debe tener al menos 6 caracteres.");
+        return false;
+      }
+
+      // Validar coincidencia de contraseñas
+      if (password !== confirmPassword) {
+        alert("Las contraseñas no coinciden.");
+        return false;
+      }
+
+      return true; // Si todo está bien, se envía el formulario
+    }
+  </script>
+</head>
+<body>
+  <h2>Registro</h2>
+  <form name="registro" action="register.php" method="POST" onsubmit="return validarFormulario();">
+    Nombre de usuario: <input type="text" name="username" required><br>
+    Nombre: <input type="text" name="nombre" required><br>
+    Apellidos: <input type="text" name="apellidos" required><br>
+    Correo: <input type="email" name="correo" required><br>
+    Contraseña: <input type="password" name="password" required><br>
+    Confirmar contraseña: <input type="password" name="confirm_password" required><br>
+    <input type="submit" value="Registrar">
+  </form>
+</body>
+</html>

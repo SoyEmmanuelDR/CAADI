@@ -1,0 +1,179 @@
+table 
+{
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 25px;
+}
+th, td 
+{
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid #ccc;
+}
+th 
+{
+    background-color: #1b396a;
+    color: white;
+}
+.acciones a {
+  display: inline-block;
+  margin: 0 5px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+
+.acciones .historial {
+  background-color: #11D990;
+  color: white;
+}
+
+.acciones .historialchecks {
+  background-color: #f61067;
+  color: white;
+}
+
+.acciones .editar {
+  background-color: #00aaff;
+  color: white;
+}
+
+.acciones .eliminar {
+  background-color: #d00000;
+  color: white;
+}
+
+.acciones a:hover {
+  opacity: 0.9;
+}
+
+.buscar 
+{
+    width: 100%; 
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+.buscar input[type="text"] 
+{
+    padding: 7px;
+    width: 240px;
+}
+
+.buscar button 
+{
+    padding: 7px 15px;
+    background-color: #1b396a;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.panel {
+  width: 90%;
+  max-width: 1100px;
+  margin: 30px auto;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+}
+
+.panel-datos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 12px 24px;
+  padding: 25px;
+}
+
+.panel-titulo {
+  background-color: #1b396a;
+  color: white;
+  padding: 10px 15px;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.panel-datos div {
+  font-size: 14px;
+}
+
+/* Estilo para tabla sin formato */
+table.tabla-sin-estilo {
+  all: initial;
+  border-collapse: separate;
+  margin: 0;
+  width: auto;
+}
+
+table.tabla-sin-estilo th,
+table.tabla-sin-estilo td {
+  all: initial;
+  padding: 0;
+  text-align: initial;
+  border: none;
+  background: none;
+  color: initial;
+}
+/* Estilos para la paginación */
+.paginacion {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    gap: 5px;
+}
+
+.paginacion a, 
+.paginacion span {
+    padding: 8px 15px;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.paginacion a {
+    background-color: #f0f0f0;
+    color: #333;
+    border: 1px solid #ddd;
+}
+
+.paginacion a:hover {
+    background-color: #e0e0e0;
+    transform: translateY(-2px);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.paginacion .actual {
+    background-color: #2c3e50;
+    color: white;
+    border: 1px solid #2c3e50;
+}
+
+.paginacion .disabled {
+    color: #aaa;
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    cursor: not-allowed;
+}
+
+.paginacion .flecha {
+    font-weight: bold;
+    padding: 8px 12px;
+}
+
+/* Para pantallas pequeñas */
+@media (max-width: 600px) {
+    .paginacion {
+        flex-wrap: wrap;
+    }
+    
+    .paginacion a, 
+    .paginacion span {
+        padding: 6px 10px;
+        font-size: 14px;
+    }
+}

@@ -1,0 +1,140 @@
+<?php 
+    session_start();
+    //Si la sesión no ha sido iniciada, redirige a index.php 
+    if (!isset($_SESSION['user_id'])) 
+    { 
+        header("Location: ../index.php"); 
+        exit; 
+    } 
+?> 
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CAADI: Registro de coach</title>
+  <link rel="stylesheet" href="../estilos/style.css" />
+  <script>
+    function validarFormulario(event) {
+      const noControl = document.getElementById("no_control").value.trim();
+      const nombres = document.getElementById("nombres").value.trim();
+      const apellidoP = document.getElementById("apellido_paterno").value.trim();
+      const apellidoM = document.getElementById("apellido_materno").value.trim();
+      const password = document.getElementById("password").value.trim();
+
+      const soloLetras = /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]{2,}$/;
+      const nueveDigitos = /^\d{8}$/;
+
+      if (!nueveDigitos.test(noControl)) {
+        alert("El número de control debe contener exactamente 9 dígitos numéricos.");
+        event.preventDefault();
+        return false;
+      }
+
+      if (!soloLetras.test(nombres)) {
+        alert("El nombre debe contener solo letras y tener al menos 2 caracteres.");
+        event.preventDefault();
+        return false;
+      }
+
+      if (!soloLetras.test(apellidoP)) {
+        alert("El apellido paterno debe contener solo letras y tener al menos 2 caracteres.");
+        event.preventDefault();
+        return false;
+      }
+
+      if (!soloLetras.test(apellidoM)) {
+        alert("El apellido materno debe contener solo letras y tener al menos 2 caracteres.");
+        event.preventDefault();
+        return false;
+      }
+
+      if (password.length < 8) {
+        alert("La contraseña debe tener al menos 10 caracteres.");
+        event.preventDefault();
+        return false;
+      }
+
+      return true;
+    }
+
+    window.addEventListener("DOMContentLoaded", function () {
+      document.forms["registroCoach"].addEventListener("submit", validarFormulario);
+    });
+  </script>
+</head>
+<body>
+
+<header>
+  <div class="logo-titulo">
+    <img src="../imagenes/itesg_vert.png" alt="Logo ITESG">
+    <span>Sistema CAADI</span>
+  </div>
+
+  <nav>
+    <a href="dashboard.php">Inicio</a>
+
+    <div class="submenu">
+      <input type="checkbox" id="toggle-submenu-estudiante" hidden>
+      <label for="toggle-submenu-estudiante">Estudiante</label>
+      <div class="submenu-items">
+        <a href="../estudiante/formRegistrarEstudiante.php">Registrar</a>
+        <a href="../modulo/inscribirAModulo.php">Inscribir a módulo</a>
+        <a href="../estudiante/formConsultarEstudiante.php">Consultar</a>
+      </div>
+    </div>
+
+    <div class="submenu">
+      <input type="checkbox" id="toggle-submenu-coach" hidden>
+      <label for="toggle-submenu-coach">Coach</label>
+      <div class="submenu-items">
+        <a href="../coach/formRegistrarCoach.html">Registrar</a>
+        <a href="../coach/formConsultarCoach.php">Consultar</a>
+      </div>
+    </div>
+
+        <div class="submenu">
+            <input type="checkbox" id="toggle-submenu" hidden>
+            <label for="toggle-submenu">Entrada/Salida</label>
+            <div class="submenu-items">
+                <a href="../registros/check-in.php">Check-In</a>
+                <a href="../registros/check-out.php">Check-Out</a>
+                <a href="#">Modificar</a>
+            </div>
+        </div>
+
+    <a href="#">Reportes</a>
+    <a href="#">Salir</a>
+  </nav>
+</header>
+
+<main>
+  <form name="registroCoach" action="registrarCoach.php" method="POST">
+    <h2>Registro de coach</h2>
+
+    <label for="no_control">No. Control:</label>
+    <input type="number" id="no_control" name="no_control" required>
+
+    <label for="nombres">Nombre(s):</label>
+    <input type="text" id="nombres" name="nombres" required>
+
+    <label for="apellido_paterno">Apellido Paterno:</label>
+    <input type="text" id="apellido_paterno" name="apellido_paterno" required>
+
+    <label for="apellido_materno">Apellido Materno:</label>
+    <input type="text" id="apellido_materno" name="apellido_materno" required>
+
+    <label for="password">Contraseña:</label>
+    <input type="password" id="password" name="password" required>
+
+    <input type="submit" value="Registrar">
+  </form>
+</main>
+
+<footer>
+  Instituto Tecnológico Superior de Guanajuato </br>
+  Desarrollado por Academia y estudiantes de Ingeniería en Sistemas Computacionales 2025.
+</footer>
+</body>
+</html>

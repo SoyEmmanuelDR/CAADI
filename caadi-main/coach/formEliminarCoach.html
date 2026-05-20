@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CAADI: Eliminar Coach</title>
+  <link rel="stylesheet" href="../estilos/style.css" />
+  <script>
+    function validarFormulario(event) {
+      const noControl = document.getElementById("no_control").value.trim();
+      const nueveDigitos = /^\d{8}$/;
+
+      if (!nueveDigitos.test(noControl)) {
+        alert("El número de control debe contener exactamente 9 dígitos numéricos.");
+        event.preventDefault();
+        return false;
+      }
+
+      return confirm("¿Estás seguro de que deseas eliminar este coach?");
+    }
+
+    window.addEventListener("DOMContentLoaded", function () {
+      document.forms["eliminarCoach"].addEventListener("submit", validarFormulario);
+    });
+  </script>
+</head>
+<body>
+
+<header>
+  <div class="logo-titulo">
+    <img src="../imagenes/itesg_vert.png" alt="Logo ITESG">
+    <span>Sistema CAADI</span>
+  </div>
+
+  <nav>
+    <a href="dashboard.php">Inicio</a>
+
+    <div class="submenu">
+      <input type="checkbox" id="toggle-submenu-estudiante" hidden>
+      <label for="toggle-submenu-estudiante">Estudiante</label>
+      <div class="submenu-items">
+        <a href="../estudiante/formRegistrarEstudiante.php">Registrar</a>
+        <a href="../modulo/inscribirAModulo.php">Inscribir a módulo</a>
+        <a href="../estudiante/formConsultarEstudiante.php">Consultar</a>
+      </div>
+    </div>
+
+    <div class="submenu">
+      <input type="checkbox" id="toggle-submenu-coach" hidden>
+      <label for="toggle-submenu-coach">Coach</label>
+      <div class="submenu-items">
+        <a href="../coach/formRegistrarCoach.php">Registrar</a>
+        <a href="../coach/formConsultarCoach.php">Consultar</a>
+      </div>
+    </div>
+
+        <div class="submenu">
+            <input type="checkbox" id="toggle-submenu" hidden>
+            <label for="toggle-submenu">Entrada/Salida</label>
+            <div class="submenu-items">
+                <a href="../registros/check-in.php">Check-In</a>
+                <a href="../registros/check-out.php">Check-Out</a>
+                <a href="#">Modificar</a>
+            </div>
+        </div>
+
+    <a href="#">Reportes</a>
+    <a href="#">Salir</a>
+  </nav>
+</header>
+
+<main>
+  <form name="eliminarCoach" action="eliminar_coach.php" method="POST">
+    <h2>Eliminar Coach</h2>
+
+    <label for="no_control">No. Control del Coach a Eliminar:</label>
+    <input type="number" id="no_control" name="no_control" required>
+
+    <input type="submit" value="Eliminar Coach">
+  </form>
+</main>
+
+<footer>
+  Instituto Tecnológico Superior de Guanajuato <br>
+  Desarrollado por Academia y estudiantes de Ingeniería en Sistemas Computacionales 2025.
+</footer>
+
+</body>
+</html>
